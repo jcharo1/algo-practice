@@ -27,3 +27,78 @@ A very common way to solve the patient-doctor problem mentioned above would be t
 * A running nose may be assigned priority 1
 * Fever may be assigned 2
 * Accident may get a priority 10
+
+
+
+
+
+Heaps
+A heap is a data structure with the following two main properties:
+
+Complete Binary Tree
+Heap Order Property
+Complete Binary Tree - Like the name suggests we use a binary tree to create heaps. 
+A complete binary tree is a special type of binary tree in which all levels must be filled except for the last level. 
+Moreover, in the last level, the elements must be filled from left to right.
+
+
+* **Heap Order Property** - Heaps come in two flavors
+    * Min Heap
+    * Max Heap
+    
+    
+* Min Heap - In the case of min heaps, for each node, the parent node must be smaller than both the child nodes. It's okay even if one or both of the child nodes do not exists. However if they do exist, the value of the parent node must be smaller. Also note that it does not matter if the left node is greater than the right node or vice versa. The only important condition is that the root node must be smaller than both it's child nodes
+* Max Heap - For max heaps, this condition is exactly reversed. For each node, the value of the parent node must be larger than both the child nodes. 
+    
+Thus, for a data structure to be called a Heap, it must satisfy both of the above properties. 
+1. It must be a complete binary tree
+2. It must satisfy the heap order property. If it's a min heap, it must satisfy the heap order property for min heaps. If it's a max heap, it should satisfy the heap order property for max heaps. 
+
+Now that we know about a complete binary, let's think about it in terms of Priority Queues. We talked about binary search trees where the complexity for insert and remove operation would be O(log(n)) if the BST is balanced.
+
+In case of a complete binary tree we do not have to worry about whether the tree is balanced or not.
+
+Max number of nodes in 1st level = 1
+Max number of nodes in 2nd level = 2
+Max number of nodes in 3rd level = 4
+Max number of nodes in 4th level = 8
+We see that there is a clear patter here.
+
+Max number of nodes in hth level =  2(ℎ−1) 
+Also, we can calculate the max number of nodes from 1st level to hth level =  2ℎ−1 
+Similarly, we can calculate the min number of nodes from 1st level to hth level = 2(ℎ−1)
+Note: the minimum number of nodes from 1st level to hth level = max number of nodes from 1st level to (h-1)th level + 1
+
+
+Now let's take a step back and see what we did.
+
+We first inserted our element at the possible index.
+
+Then we compared this element with the parent element and swapped them after finding that our child node was smaller than our parent node. And we did this process again. While writing code, we will continue this process until we find a parent which is smaller than the child node. Because we are travering the tree upwards while heapifying, this particular process is more accurately called up-heapify.
+
+Thus our insert method is actually done in two steps:
+
+insert
+up-heapify
+
+
+### Time Complexity
+
+Before talking about the implementation of `insert`, let's talk about the time complexity of the `insert` method. 
+
+* Putting an element at a particular index in an array takes `O(1)` time. 
+* However, in case of heapify, in the worst case we may have to travel from the node that we inserted right to the root node (placed at 0th index in the array). This would take `O(h)` time. In other words, this would be an `O(log(n))` operation. 
+
+Thus the time complexity of `insert` would be `O(log(n))`.
+
+
+
+
+
+The child nodes of p are ---> 2 * (p + 1) and 2 * (p + 2)
+
+i.e. the child nodes of a parent index p are placed at indices 2 * (p + 1) and 2 * (p + 2)
+
+Similarly, can you deduce parent indices from a child index c?
+
+Ans. for a child node at index c, the parent node will be located at (p - 1)//2
