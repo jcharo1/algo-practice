@@ -1,0 +1,29 @@
+Priority Queues - Intuition
+Consider the following scenario -
+
+A doctor is working in an emergency wing at a hospital. When patients come in, a nurse checks their symptoms and based on the severity of the illness, sends them to the doctor. For e.g.
+a guy who has had an accident is sent before someone who has come with a runny nose. But there is a slight problem. There is only one nurse and only one doctor. 
+In the amount of time nurse takes to check the symptoms, the doctor has to work alone with the patients, hurting their overall productivity.
+
+You are a ninja programmer. The doctor comes to you for help. Your job is to write a small software in which patients will enter their symptoms and will receive a priority number based on their illness. 
+The doctor has given you a list of common ailments, and the priority in which he would prefer seeing them. How would you solve the priority problem?
+
+Functionality
+If we were to create a PriorityQueue class, what methods would it need to have?
+
+Here are the two key methods:
+
+insert - insert an element
+remove - remove an element
+And we can also add the same utility methods that we had in our regular Queue class:
+
+front - returns the element at the front of the queue
+size - returns the number of elements present in the queue
+is_empty - returns True if there are no elements in the queue, and False otherwise
+As part of this functionality, we will need a way of assigning priorities to the items.
+
+A very common way to solve the patient-doctor problem mentioned above would be to assign each ailment a priority. For e.g.
+
+* A running nose may be assigned priority 1
+* Fever may be assigned 2
+* Accident may get a priority 10
