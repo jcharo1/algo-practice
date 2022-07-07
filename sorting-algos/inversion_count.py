@@ -28,3 +28,10 @@ def inversion_count(arr, start_index,end_index):
 def  merge_two_sorted_halves():
 d=[7, 5, 3, 1]
 count_inversions(d)
+
+
+
+
+
+252950
+
