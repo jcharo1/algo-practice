@@ -1,4 +1,6 @@
-def sqrt(number):
+
+
+def sqrt(num):
     """
     Calculate the floored square root of a number
 
@@ -7,8 +9,11 @@ def sqrt(number):
     Returns:
        int: Floored Square Root
     """
+    
     pass
-
+    start = 0
+    end = num 
+    while start< end:
 print ("Pass" if  (3 == sqrt(9)) else "Fail")
 print ("Pass" if  (0 == sqrt(0)) else "Fail")
 print ("Pass" if  (4 == sqrt(16)) else "Fail")
