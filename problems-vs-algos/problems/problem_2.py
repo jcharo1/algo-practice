@@ -9,21 +9,57 @@ def rotated_array_search(input_list, number):
     Returns:
        int: Index or -1
     """
-   pass
+    if len(input_list) == 0:
+        return -1
+    if len(input_list) == 1:
+        if input_list[0] == number:
+            return 0
+        else:
+            return -1
+    
+    start = 0
+    end = len(input_list) - 1
+    output = 0
+
+    if input_list[start] < input_list[end]:
+
+        output = binary_search(input_list,number,start, end)
+    else:
+
+        pivot_index = find_pivot(input_list,start, end)
+
+        if number  >= input_list[pivot_index] and number <= input_list[end]:
+            output = binary_search(input_list,number,pivot_index, end)
+        else:
+            output = binary_search(input_list,number,start, pivot_index-1)
+    
+    return output
+
 
 def find_pivot(input_list, start,end):
-    mid = (start + end) //2
-    if input_list[mid] > input_list[mid+1]
-        return mid
+    mid = start  + (end-start) //2
+    pivot_index = 0
+    if input_list[mid] > input_list[mid+1]:
+        return mid +1
+    else:
+        if input_list[start] > input_list[mid]:
+            pivot_index = find_pivot(input_list,start, mid-1)
+        else:
+            pivot_index = find_pivot(input_list,mid+1, end)
+    return pivot_index
+        
 def binary_search(input_list, target,start,end):
-    mid = (start+end )//2
+    
     while start <= end:
+        mid = (start+end )//2
         if input_list[mid] ==target:
             return mid 
-        elif input_list[mid] < target:
-            start = mid+1
         else:
-            end = mid -1
+            if input_list[mid] > target:
+            
+                end = mid -1
+            else:
+                start = mid+1
     return -1
 
 
