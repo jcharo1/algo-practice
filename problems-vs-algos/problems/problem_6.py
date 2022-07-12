@@ -14,15 +14,15 @@ def get_min_max(ints):
         return (None, None)
     if len(ints) == 1:
         return (ints[0],ints[0])
-    max = sys.maxsize * (-1)
-    min = sys.maxsize 
+    max = -float('inf')
+    min = float('inf')
 
     for num in ints:
         if num < min:
             min = num
         if num > max:
             max = num
-    print(min,max)
+   
     return (min,max) 
 
 ## Example Test Case of Ten Integers
