@@ -37,19 +37,40 @@ def dijkstra(graph, source):
 
         if node != source:
             result[node]= sys.maxsize
+    
+    unvisited = set(graph.nodes)
+    print(unvisited)
+    path = {}
+
     # As long as unvisited is non-empty
     while unvisited: 
-        
+        min_node= None
         # 1. Find the unvisited node having smallest known distance from the source node.
-        
+        for node in unvisited:
+            if node in result:
+                if min_node is None:
+                    min_node = node
+                elif result[node] < result[min_node]:
+                    min_node = node
+        if min_node is None:
+            break
+
+        current_distance = result[min_node]
+        print(current_distance)
         # 2. For the current node, find all the unvisited neighbours. For this, you have calculate the distance of each unvisited neighbour.
-        
-        # 3. If the calculated distance of the unvisited neighbour is less than the already known distance in result dictionary, update the shortest distance in the result dictionary.        
+        for neighbour in graph.neighbours[min_node]:
+            if neighbour in unvisited:
+                distance = current_distance + graph.distances[(min_node, neighbour)]
 
-        # 4. If there is an update in the result dictionary, you need to update the path dictionary as well for the same key.
-                    
+
+                # 3. If the calculated distance of the unvisited neighbour is less than the already known distance in result dictionary, update the shortest distance in the result dictionary.        
+                if (neighbour not in result) or (distance<result[neighbour]):
+                    result[neighbour] = distance
+                
+                    # 4. If there is an update in the result dictionary, you need to update the path dictionary as well for the same key.
+                    path[neighbour]= min_node
         # 5. Remove the current node from the unvisited set.
-
+        unvisited.remove(min_node)
     return result
 
 
@@ -76,34 +97,34 @@ print(dijkstra(testGraph, 'A'))     # {'A': 0, 'D': 2, 'B': 3, 'E': 3, 'C': 4}
 
 
 
-# Test 2
-graph = Graph()
-for node in ['A', 'B', 'C']:
-    graph.add_node(node)
+# # Test 2
+# graph = Graph()
+# for node in ['A', 'B', 'C']:
+#     graph.add_node(node)
     
-graph.add_edge('A', 'B', 5)
-graph.add_edge('B', 'C', 5)
-graph.add_edge('A', 'C', 10)
+# graph.add_edge('A', 'B', 5)
+# graph.add_edge('B', 'C', 5)
+# graph.add_edge('A', 'C', 10)
 
-print(dijkstra(graph, 'A'))        # {'A': 0, 'C': 10, 'B': 5}
-
-
+# print(dijkstra(graph, 'A'))        # {'A': 0, 'C': 10, 'B': 5}
 
 
 
-# Test 3
-graph = Graph()
-for node in ['A', 'B', 'C', 'D', 'E', 'F']:
-    graph.add_node(node)
+
+
+# # Test 3
+# graph = Graph()
+# for node in ['A', 'B', 'C', 'D', 'E', 'F']:
+#     graph.add_node(node)
     
-graph.add_edge('A', 'B', 5)
-graph.add_edge('A', 'C', 4)
-graph.add_edge('D', 'C', 1)
-graph.add_edge('B', 'C', 2)
-graph.add_edge('A', 'D', 2)
-graph.add_edge('B', 'F', 2)
-graph.add_edge('C', 'F', 3)
-graph.add_edge('E', 'F', 2)
-graph.add_edge('C', 'E', 1)
+# graph.add_edge('A', 'B', 5)
+# graph.add_edge('A', 'C', 4)
+# graph.add_edge('D', 'C', 1)
+# graph.add_edge('B', 'C', 2)
+# graph.add_edge('A', 'D', 2)
+# graph.add_edge('B', 'F', 2)
+# graph.add_edge('C', 'F', 3)
+# graph.add_edge('E', 'F', 2)
+# graph.add_edge('C', 'E', 1)
 
-print(dijkstra(graph, 'A'))       # {'A': 0, 'C': 3, 'B': 5, 'E': 4, 'D': 2, 'F': 6}
+# print(dijkstra(graph, 'A'))       # {'A': 0, 'C': 3, 'B': 5, 'E': 4, 'D': 2, 'F': 6}
