@@ -1,14 +1,36 @@
+s = "abc" 
+t = "ahbgdc"
+diff=[]
+for char in t:
+    if char not in s:
+        diff.append(char)
 
-
-                          0  1  2  3  4  5  6  7  8  9  10  11  12
-                    0   [[0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-                    1    [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
-                    2    [0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-                    3    [0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0],
-                    4    [0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0],
-                    5    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-                    6    [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
-                    7    [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0]]
+print(diff)
 
 
 
+def isSubsequence(self, s: str, t: str) -> bool:
+        if len(s) <= 0: return True
+        s_index = 0
+        for i, char in enumerate(t):
+            if char == s[s_index]:
+                if s_index == len(s)-1:
+                    return True
+                s_index+=1
+        return False
+
+
+
+
+
+
+
+s = "axc" 
+t = "ahbgdc"
+
+diff=[]
+for char in t:
+    if char not in s:
+        diff.append(char)
+
+print(diff)
